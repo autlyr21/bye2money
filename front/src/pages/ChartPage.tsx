@@ -48,26 +48,28 @@ export const ChartPage = () => {
       ),
     [spendings, selectedCategory],
   );
-  const recentSpendingsLines = useMemo(() =>
-    Array.from({ length: 6 }).map((_x, i) => {
-      const sY =
-        (1 -
-          recentSpendingsCategorySum[i] /
-          (Math.max(...recentSpendingsCategorySum) * 1.1)) *
-        297;
-      const sX = (i * 750) / 11;
-      const eY =
-        (1 -
-          recentSpendingsCategorySum[i + 1] /
-          (Math.max(...recentSpendingsCategorySum) * 1.1)) *
-        297;
-      const eX = ((i + 1) * 750) / 11;
-      const length = Math.hypot(sX - eX, sY - eY);
-      const dX = eX - sX;
-      const dY = eY - sY;
-      const rad = Math.atan2(dY, dX);
-      return { top: sY, left: sX, length, rad };
-    }),
+  const recentSpendingsLines = useMemo(
+    () =>
+      Array.from({ length: 6 }).map((_x, i) => {
+        const sY =
+          (1 -
+            recentSpendingsCategorySum[i] /
+            (Math.max(...recentSpendingsCategorySum) * 1.1)) *
+          297;
+        const sX = (i * 750) / 11;
+        const eY =
+          (1 -
+            recentSpendingsCategorySum[i + 1] /
+            (Math.max(...recentSpendingsCategorySum) * 1.1)) *
+          297;
+        const eX = ((i + 1) * 750) / 11;
+        const length = Math.hypot(sX - eX, sY - eY);
+        const dX = eX - sX;
+        const dY = eY - sY;
+        const rad = Math.atan2(dY, dX);
+        return { top: sY, left: sX, length, rad };
+      }),
+    [recentSpendingsCategorySum],
   );
 
   return (
