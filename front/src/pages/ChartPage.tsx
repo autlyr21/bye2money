@@ -8,9 +8,9 @@ import type { Category } from "../types/types";
 import { CategorySpendingTrend } from "../components/Chart/CategorySpendingTrend";
 
 export const ChartPage = () => {
-  const [selectedCategory, setSelectedCategory] = useState<
-    Category | undefined
-  >(undefined);
+  const [selectedCategory, setSelectedCategory] = useState<Category | null>(
+    null,
+  );
 
   const { getSpendingsByMonth } = useSpendingDetailStore();
   const { getYear, getMonth } = useDateStore();
