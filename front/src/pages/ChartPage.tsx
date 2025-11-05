@@ -35,9 +35,9 @@ export const ChartPage = () => {
       {selectedCategory && (
         <>
           <CategorySpendingTrend selectedCategory={selectedCategory} />
-          {spendingsByDayByCategory.map((s, i) => (
+          {spendingsByDayByCategory.map((s) => (
             <DaySpendingsSection
-              key={i}
+              key={`${s.year}-${s.month}-${s.day}`}
               day={s.day}
               year={s.year}
               month={s.month}
