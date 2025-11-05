@@ -43,23 +43,23 @@ export const CategorySpendingTrend: React.FC<CategorySpendingTrendProps> = ({
   const recentSpendingsLines = useMemo(
     () =>
       Array.from({ length: 6 }).map((_x, i) => {
-        const sY =
+        const startY =
           (1 -
             recentSpendingsCategorySum[i] /
-            (Math.max(...recentSpendingsCategorySum) * 1.1)) *
+              (Math.max(...recentSpendingsCategorySum) * 1.1)) *
           297;
-        const sX = (i * 750) / 11;
-        const eY =
+        const startX = (i * 750) / 11;
+        const endY =
           (1 -
             recentSpendingsCategorySum[i + 1] /
-            (Math.max(...recentSpendingsCategorySum) * 1.1)) *
+              (Math.max(...recentSpendingsCategorySum) * 1.1)) *
           297;
-        const eX = ((i + 1) * 750) / 11;
-        const length = Math.hypot(sX - eX, sY - eY);
-        const dX = eX - sX;
-        const dY = eY - sY;
-        const rad = Math.atan2(dY, dX);
-        return { top: sY, left: sX, length, rad };
+        const endX = ((i + 1) * 750) / 11;
+        const length = Math.hypot(startX - endX, startY - endY);
+        const deltaX = endX - startX;
+        const deltaY = endY - startY;
+        const rad = Math.atan2(deltaY, deltaX);
+        return { top: startY, left: startX, length, rad };
       }),
     [recentSpendingsCategorySum],
   );
